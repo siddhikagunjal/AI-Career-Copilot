@@ -1,0 +1,12 @@
+virtual enviroment(venv)
+
+all project same packeages
+A>flask 2
+B flask 3 
+with venv A->falsk 2 and venv 3 flask 3
+
+
+pip install flask sqlalchemy pymsql openai PyPDF2 docx
+
+1-setp-1 setup
+2-database connection(user id,pass,history store,user easily access history)

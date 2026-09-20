@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+History | AI Career Copilot
+{% endblock %}
+
+{% block content %}
+
+<section class="history-page">
+
+    <div class="page-heading reveal">
+
+        <span class="section-label">
+            RESUME REPORTS
+        </span>
+
+        <h1>
+            📚 Analysis History
+        </h1>
+
+        <p>
+            View your previous resume analysis reports.
+        </p>
+
+    </div>
+
+
+    {% if reports %}
+
+        <div class="history-grid">
+
+        {% for report in reports %}
+
+            <div class="history-card reveal">
+
+                <div class="history-card-top">
+
+                    <div class="history-number">
+                        #{{ report.id }}
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Resume Analysis
+                        </h3>
+
+                        <span>
+                            Report ID: {{ report.id }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                {% if report.report_text %}
+
+                <div class="history-section">
+
+                    <h4>
+                        📝 Resume
+                    </h4>
+
+                    <div class="resume-history-text">
+                        {{ report.report_text }}
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if report.result %}
+
+                <div class="history-section">
+
+                    <h4>
+                        📊 Analysis Result
+                    </h4>
+
+                    <pre>{{ report.result }}</pre>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-history reveal">
+
+            <div class="empty-icon">
+                📭
+            </div>
+
+            <h2>
+                No History Found
+            </h2>
+
+            <p>
+                You haven't analyzed any resume yet.
+            </p>
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="hero-primary"
+            >
+                🚀 Analyze Resume
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

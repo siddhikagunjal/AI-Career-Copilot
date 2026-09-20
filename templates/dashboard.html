@@ -1,0 +1,1777 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="career-hero">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            🤖 AI Career Copilot
+        </span>
+
+        <h1>
+            Build Your Career
+            <span>with AI</span>
+        </h1>
+
+        <p>
+            Analyze your resume, discover missing skills,
+            identify career gaps, prepare for interviews,
+            and get a personalized career roadmap.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#resume-analyzer"
+                class="primary-btn"
+            >
+                🚀 Analyze My Resume
+            </a>
+
+            <a
+                href="{{ url_for('history') }}"
+                class="secondary-btn"
+            >
+                📚 View History
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-icon">
+        📊
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUICK STATS
+===================================================== -->
+
+<section class="stats-section">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🎯
+        </div>
+
+        <div>
+            <h3>Any Role</h3>
+            <p>Target Role</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🤖
+        </div>
+
+        <div>
+            <h3>AI Powered</h3>
+            <p>Resume Analysis</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🗺️
+        </div>
+
+        <div>
+            <h3>Personalized</h3>
+            <p>Career Roadmap</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            💼
+        </div>
+
+        <div>
+            <h3>Interview</h3>
+            <p>Preparation</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESUME ANALYZER
+===================================================== -->
+
+<section
+    class="analyzer-section"
+    id="resume-analyzer"
+>
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            RESUME ANALYZER
+        </span>
+
+        <h2>
+            Analyze Your Resume
+        </h2>
+
+        <p>
+            Enter your target role and upload or paste your
+            resume to get a personalized career analysis.
+        </p>
+
+    </div>
+
+
+    <div class="analyzer-card">
+
+        <form
+            method="POST"
+            action="{{ url_for('dashboard') }}"
+            enctype="multipart/form-data"
+        >
+
+            <!-- =================================================
+                 PASTE RESUME
+            ================================================= -->
+
+            <div class="input-section">
+
+                <label for="resume">
+                    📝 Paste Your Resume
+                </label>
+
+                <textarea
+                    id="resume"
+                    name="resume"
+                    placeholder="Paste your complete resume text here..."
+                >{{ request.form.get('resume', '') }}</textarea>
+
+            </div>
+
+
+            <!-- =================================================
+                 OR
+            ================================================= -->
+
+            <div class="or-divider">
+
+                <span>
+                    OR
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 UPLOAD RESUME
+            ================================================= -->
+
+            <div class="upload-box">
+
+                <div class="upload-icon">
+                    📄
+                </div>
+
+                <h3>
+                    Upload Resume
+                </h3>
+
+                <p>
+                    Supported formats: PDF, DOCX
+                </p>
+
+                <input
+                    type="file"
+                    name="resume_file"
+                    accept=".pdf,.docx"
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 TARGET ROLE
+            ================================================= -->
+
+            <div class="input-section">
+
+                <label for="role">
+                    🎯 Target Role
+                </label>
+
+                <input
+                    type="text"
+                    id="role"
+                    name="role"
+                    value="{{ request.form.get('role', '') }}"
+                    placeholder="Enter your target role"
+                    autocomplete="off"
+                    required
+                >
+
+                <p class="input-help">
+                    Example: Data Scientist, Data Analyst,
+                    Machine Learning Engineer, Software Engineer,
+                    Web Developer
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ANALYZE BUTTON
+            ================================================= -->
+
+            <button
+                type="submit"
+                class="analyze-btn"
+            >
+                🚀 Analyze Resume
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ERROR MESSAGE
+===================================================== -->
+
+{% if result and result.error %}
+
+<section class="results-section">
+
+    <div class="error-card">
+
+        <h3>
+            ⚠️ Analysis Error
+        </h3>
+
+        <p>
+            {{ result.error }}
+        </p>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     ANALYSIS RESULTS
+===================================================== -->
+
+{% if result and not result.error %}
+
+<section
+    class="results-section"
+    id="analysis-results"
+>
+
+    <!-- =================================================
+         RESULT HEADER
+    ================================================= -->
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            AI ANALYSIS
+        </span>
+
+        <h2>
+            Your Resume Analysis
+        </h2>
+
+        {% if result.role %}
+
+        <p>
+            Analysis for:
+            <strong>
+                {{ result.role }}
+            </strong>
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =================================================
+         RESUME SCORE
+         ANIMATED
+    ================================================= -->
+
+    <div class="score-card">
+
+        <div class="score-circle animated-score-circle">
+
+            <!-- SVG PROGRESS RING -->
+
+            <svg
+                class="score-ring"
+                viewBox="0 0 120 120"
+            >
+
+                <!-- Background Ring -->
+
+                <circle
+                    class="score-ring-bg"
+                    cx="60"
+                    cy="60"
+                    r="52"
+                ></circle>
+
+
+                <!-- Animated Progress Ring -->
+
+                <circle
+                    id="scoreProgress"
+                    class="score-ring-progress"
+                    cx="60"
+                    cy="60"
+                    r="52"
+                ></circle>
+
+            </svg>
+
+
+            <!-- SCORE NUMBER -->
+
+            <div class="score-content">
+
+                <span
+                    id="resumeScore"
+                    data-score="{{ result.score }}"
+                >
+                    0%
+                </span>
+
+                <small>
+                    Resume Score
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="score-info">
+
+            <h2>
+                {{ result.role or "Career" }} Readiness
+            </h2>
+
+            <p>
+                Your resume currently matches
+                <strong>
+                    <span id="scoreText">0</span>%
+                </strong>
+                of the important skills identified for your
+                selected target role.
+            </p>
+
+            <!-- SCORE STATUS -->
+
+            <div
+                id="scoreStatus"
+                class="score-status"
+            >
+                ⏳ Calculating your resume score...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SKILLS GRID
+    ================================================= -->
+
+    <div class="analysis-grid">
+
+
+        <!-- =================================================
+             FOUND SKILLS
+        ================================================= -->
+
+        <div class="analysis-card">
+
+            <div class="analysis-title">
+
+                <span>
+                    ✅
+                </span>
+
+                <h3>
+                    Skills Found
+                </h3>
+
+            </div>
+
+
+            {% if result.found_skills %}
+
+            <div class="skill-list">
+
+                {% for skill in result.found_skills %}
+
+                <span class="skill-tag">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p>
+                No matching skills were detected.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =================================================
+             MISSING SKILLS
+        ================================================= -->
+
+        <div class="analysis-card">
+
+            <div class="analysis-title">
+
+                <span>
+                    ⚠️
+                </span>
+
+                <h3>
+                    Missing Skills
+                </h3>
+
+            </div>
+
+
+            {% if result.missing_skills %}
+
+            <div class="skill-list">
+
+                {% for skill in result.missing_skills %}
+
+                <span class="missing-tag">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p>
+                🎉 No major missing skills detected.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CAREER ROADMAP
+    ================================================= -->
+
+    <div class="analysis-card">
+
+        <div class="analysis-title">
+
+            <span>
+                🗺️
+            </span>
+
+            <h3>
+                {{ result.role or "Career" }} Roadmap
+            </h3>
+
+        </div>
+
+
+        {% if result.roadmap %}
+
+            {% for step in result.roadmap %}
+
+            <div class="roadmap-step">
+
+                <div class="step-number">
+                    {{ loop.index }}
+                </div>
+
+                <div>
+                    {{ step }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="roadmap-step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <div>
+                    Strengthen the skills required for your
+                    selected target role.
+                </div>
+
+            </div>
+
+
+            <div class="roadmap-step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <div>
+                    Build practical projects related to your
+                    target role.
+                </div>
+
+            </div>
+
+
+            <div class="roadmap-step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <div>
+                    Practice technical and interview questions.
+                </div>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =================================================
+         INTERVIEW PREPARATION
+    ================================================= -->
+
+    <div class="analysis-card">
+
+        <div class="analysis-title">
+
+            <span>
+                🎤
+            </span>
+
+            <h3>
+                {{ result.role or "Target Role" }}
+                Interview Preparation
+            </h3>
+
+        </div>
+
+
+        {% if result.interview_questions %}
+
+        <ol class="interview-list">
+
+            {% for question in result.interview_questions %}
+
+            <li>
+                {{ question }}
+            </li>
+
+            {% endfor %}
+
+        </ol>
+
+        {% else %}
+
+        <div class="interview-question">
+
+            <p>
+                Tell me about yourself and your experience
+                relevant to this role.
+            </p>
+
+        </div>
+
+
+        <div class="interview-question">
+
+            <p>
+                Explain one important project mentioned
+                in your resume.
+            </p>
+
+        </div>
+
+
+        <div class="interview-question">
+
+            <p>
+                What are your strongest technical skills?
+            </p>
+
+        </div>
+
+
+        <div class="interview-question">
+
+            <p>
+                Describe a difficult problem you faced
+                in a project and how you solved it.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+     RESUME IMPROVEMENT
+     ALWAYS VISIBLE
+===================================================== -->
+
+<section class="download-section">
+
+    <div class="analysis-title">
+
+        <span>
+            ✨
+        </span>
+
+        <h3>
+            Improve Your Resume
+        </h3>
+
+    </div>
+
+
+    <p>
+        Fix common formatting issues, clean the resume
+        structure and generate an improved version
+        that you can download.
+    </p>
+
+
+    <div class="resume-actions">
+
+        <!-- =================================================
+             FIX & IMPROVE BUTTON
+        ================================================= -->
+
+        <a
+            href="{{ url_for('fix_resume') }}"
+            class="primary-btn"
+            id="fixResumeBtn"
+            onclick="showResumeFixing()"
+        >
+
+            <span id="fixIcon">
+                ✨
+            </span>
+
+            <span id="fixText">
+                Fix & Improve Resume
+            </span>
+
+        </a>
+
+
+        <!-- =================================================
+             DOWNLOAD BUTTON
+        ================================================= -->
+
+        {% if session.get('corrected_resume') %}
+
+        <a
+            href="{{ url_for('download_corrected_resume') }}"
+            class="secondary-btn"
+        >
+            ⬇️ Download Corrected Resume
+        </a>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =================================================
+         LIVE FIXING STATUS
+    ================================================= -->
+
+    <div
+        id="resumeFixStatus"
+        class="resume-fix-status"
+        style="display: none;"
+    >
+
+        <div class="loading-spinner"></div>
+
+
+        <div>
+
+            <strong id="fixStatusTitle">
+                ⏳ Fixing your resume...
+            </strong>
+
+            <p id="fixStatusMessage">
+                Reading your resume and checking the formatting.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HISTORY BUTTON
+===================================================== -->
+
+<section class="action-section">
+
+    <a
+        href="{{ url_for('history') }}"
+        class="secondary-btn"
+    >
+        📚 View Analysis History
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     CAREER ROADMAP PREVIEW
+===================================================== -->
+
+<section class="career-section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            CAREER PATH
+        </span>
+
+        <h2>
+            Build Your Career Roadmap
+        </h2>
+
+        <p>
+            Develop the right technical skills, build projects,
+            and prepare for your target career.
+        </p>
+
+    </div>
+
+
+    <div class="career-roadmap">
+
+
+        <!-- STEP 01 -->
+
+        <div class="career-step">
+
+            <span>
+                STEP 01
+            </span>
+
+            <h3>
+                Programming
+            </h3>
+
+            <p>
+                Strengthen programming fundamentals
+                and problem-solving skills.
+            </p>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <!-- STEP 02 -->
+
+        <div class="career-step">
+
+            <span>
+                STEP 02
+            </span>
+
+            <h3>
+                SQL & Data
+            </h3>
+
+            <p>
+                Learn databases, SQL and
+                data handling techniques.
+            </p>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <!-- STEP 03 -->
+
+        <div class="career-step">
+
+            <span>
+                STEP 03
+            </span>
+
+            <h3>
+                Core Skills
+            </h3>
+
+            <p>
+                Develop the technical skills
+                required for your target role.
+            </p>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <!-- STEP 04 -->
+
+        <div class="career-step">
+
+            <span>
+                STEP 04
+            </span>
+
+            <h3>
+                Projects
+            </h3>
+
+            <p>
+                Build practical projects and
+                showcase your abilities.
+            </p>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <!-- STEP 05 -->
+
+        <div class="career-step">
+
+            <span>
+                STEP 05
+            </span>
+
+            <h3>
+                Interviews
+            </h3>
+
+            <p>
+                Practice technical questions,
+                aptitude and communication.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+===================================================== -->
+
+<section class="final-cta">
+
+    <h2>
+        Ready to Build Your Career? 🚀
+    </h2>
+
+    <p>
+        Analyze your resume, identify skill gaps,
+        improve your profile and prepare for your
+        next career opportunity.
+    </p>
+
+    <a
+        href="#resume-analyzer"
+        class="primary-btn"
+    >
+        Start Resume Analysis
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     SCORE ANIMATION + RESUME FIX JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+   ANIMATED RESUME SCORE
+===================================================== */
+
+function animateResumeScore() {
+
+    const scoreElement =
+        document.getElementById("resumeScore");
+
+    const scoreText =
+        document.getElementById("scoreText");
+
+    const progressCircle =
+        document.getElementById("scoreProgress");
+
+    const scoreStatus =
+        document.getElementById("scoreStatus");
+
+
+    /*
+     * If score element doesn't exist,
+     * there is no analysis result.
+     */
+
+    if (!scoreElement) {
+        return;
+    }
+
+
+    /*
+     * Get score generated by Flask.
+     */
+
+    const targetScore =
+        parseInt(
+            scoreElement.getAttribute("data-score") || "0",
+            10
+        );
+
+
+    /*
+     * Make sure score stays between 0 and 100.
+     */
+
+    const finalScore =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                targetScore
+            )
+        );
+
+
+    /*
+     * SVG circle configuration.
+     */
+
+    const radius = 52;
+
+    const circumference =
+        2 * Math.PI * radius;
+
+
+    /*
+     * Set initial ring state.
+     */
+
+    if (progressCircle) {
+
+        progressCircle.style.strokeDasharray =
+            circumference;
+
+        progressCircle.style.strokeDashoffset =
+            circumference;
+
+    }
+
+
+    /*
+     * Animation duration.
+     */
+
+    const duration = 1800;
+
+    const startTime =
+        performance.now();
+
+
+    /*
+     * Animation function.
+     */
+
+    function updateScore(currentTime) {
+
+        const elapsed =
+            currentTime - startTime;
+
+
+        /*
+         * Progress from 0 to 1.
+         */
+
+        const progress =
+            Math.min(
+                elapsed / duration,
+                1
+            );
+
+
+        /*
+         * Smooth ease-out effect.
+         */
+
+        const easedProgress =
+            1 -
+            Math.pow(
+                1 - progress,
+                3
+            );
+
+
+        /*
+         * Current animated number.
+         */
+
+        const currentScore =
+            Math.floor(
+                finalScore *
+                easedProgress
+            );
+
+
+        /*
+         * Update main score.
+         */
+
+        scoreElement.innerHTML =
+            currentScore + "%";
+
+
+        /*
+         * Update text score.
+         */
+
+        if (scoreText) {
+
+            scoreText.innerHTML =
+                currentScore;
+
+        }
+
+
+        /*
+         * Update circular progress.
+         */
+
+        if (progressCircle) {
+
+            const offset =
+                circumference -
+                (
+                    easedProgress *
+                    circumference *
+                    (
+                        finalScore / 100
+                    )
+                );
+
+            progressCircle.style.strokeDashoffset =
+                offset;
+
+        }
+
+
+        /*
+         * Continue animation.
+         */
+
+        if (progress < 1) {
+
+            requestAnimationFrame(
+                updateScore
+            );
+
+        } else {
+
+            /*
+             * Final exact value.
+             */
+
+            scoreElement.innerHTML =
+                finalScore + "%";
+
+
+            if (scoreText) {
+
+                scoreText.innerHTML =
+                    finalScore;
+
+            }
+
+
+            if (progressCircle) {
+
+                progressCircle.style.strokeDashoffset =
+                    circumference -
+                    (
+                        circumference *
+                        (
+                            finalScore / 100
+                        )
+                    );
+
+            }
+
+
+            /*
+             * Update status message.
+             */
+
+            if (scoreStatus) {
+
+                if (finalScore >= 80) {
+
+                    scoreStatus.innerHTML =
+                        "🟢 Strong resume match";
+
+                }
+                else if (finalScore >= 60) {
+
+                    scoreStatus.innerHTML =
+                        "🟡 Good progress — keep improving";
+
+                }
+                else if (finalScore >= 40) {
+
+                    scoreStatus.innerHTML =
+                        "🟠 Some important skills are missing";
+
+                }
+                else {
+
+                    scoreStatus.innerHTML =
+                        "🔴 Your resume needs improvement";
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Start animation.
+     */
+
+    requestAnimationFrame(
+        updateScore
+    );
+
+}
+
+
+/* =====================================================
+   RUN SCORE ANIMATION AFTER PAGE LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        animateResumeScore();
+
+    }
+);
+
+
+/* =====================================================
+   LIVE RESUME FIXING
+===================================================== */
+
+function showResumeFixing() {
+
+    const button =
+        document.getElementById(
+            "fixResumeBtn"
+        );
+
+    const icon =
+        document.getElementById(
+            "fixIcon"
+        );
+
+    const text =
+        document.getElementById(
+            "fixText"
+        );
+
+    const status =
+        document.getElementById(
+            "resumeFixStatus"
+        );
+
+    const title =
+        document.getElementById(
+            "fixStatusTitle"
+        );
+
+    const message =
+        document.getElementById(
+            "fixStatusMessage"
+        );
+
+
+    /*
+     * Safety check.
+     */
+
+    if (!button || !status) {
+
+        return true;
+
+    }
+
+
+    /*
+     * Disable repeated clicks.
+     */
+
+    button.style.pointerEvents =
+        "none";
+
+    button.style.opacity =
+        "0.7";
+
+
+    /*
+     * Change button.
+     */
+
+    if (icon) {
+
+        icon.innerHTML =
+            "⏳";
+
+    }
+
+
+    if (text) {
+
+        text.innerHTML =
+            "Fixing Resume...";
+
+    }
+
+
+    /*
+     * Show status.
+     */
+
+    status.style.display =
+        "flex";
+
+
+    /*
+     * STEP 1
+     */
+
+    if (title) {
+
+        title.innerHTML =
+            "⏳ Fixing your resume...";
+
+    }
+
+
+    if (message) {
+
+        message.innerHTML =
+            "Reading your resume and checking the formatting.";
+
+    }
+
+
+    /*
+     * STEP 2
+     */
+
+    setTimeout(
+        function () {
+
+            if (title) {
+
+                title.innerHTML =
+                    "📝 Cleaning resume...";
+
+            }
+
+
+            if (message) {
+
+                message.innerHTML =
+                    "Removing unnecessary spaces and fixing the resume structure.";
+
+            }
+
+        },
+        700
+    );
+
+
+    /*
+     * STEP 3
+     */
+
+    setTimeout(
+        function () {
+
+            if (title) {
+
+                title.innerHTML =
+                    "✨ Improving resume...";
+
+            }
+
+
+            if (message) {
+
+                message.innerHTML =
+                    "Organizing headings, bullet points and sections.";
+
+            }
+
+        },
+        1400
+    );
+
+
+    /*
+     * STEP 4
+     */
+
+    setTimeout(
+        function () {
+
+            if (title) {
+
+                title.innerHTML =
+                    "📄 Generating resume...";
+
+            }
+
+
+            if (message) {
+
+                message.innerHTML =
+                    "Creating your improved DOCX resume.";
+
+            }
+
+        },
+        2100
+    );
+
+
+    /*
+     * Return true so Flask route
+     * continues normally.
+     */
+
+    return true;
+
+}
+
+</script>
+
+
+<!-- =====================================================
+     SCORE ANIMATION STYLES
+===================================================== -->
+
+<style>
+
+/* =====================================================
+   SCORE CARD
+===================================================== */
+
+.score-card {
+
+    display: flex;
+    align-items: center;
+    gap: 45px;
+
+}
+
+
+/* =====================================================
+   SCORE CIRCLE
+===================================================== */
+
+.animated-score-circle {
+
+    position: relative;
+
+    width: 190px;
+    height: 190px;
+
+    min-width: 190px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+/* =====================================================
+   SVG RING
+===================================================== */
+
+.score-ring {
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    transform: rotate(-90deg);
+
+    overflow: visible;
+
+}
+
+
+/* =====================================================
+   BACKGROUND RING
+===================================================== */
+
+.score-ring-bg {
+
+    fill: none;
+
+    stroke: rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+    stroke-width: 8;
+
+}
+
+
+/* =====================================================
+   PROGRESS RING
+===================================================== */
+
+.score-ring-progress {
+
+    fill: none;
+
+    stroke: #8b5cf6;
+
+    stroke-width: 8;
+
+    stroke-linecap: round;
+
+    stroke-dasharray: 326.7256;
+
+    stroke-dashoffset: 326.7256;
+
+    transition:
+        stroke-dashoffset 0.05s linear;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(
+                139,
+                92,
+                246,
+                0.7
+            )
+        );
+
+}
+
+
+/* =====================================================
+   SCORE CONTENT
+===================================================== */
+
+.score-content {
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   SCORE NUMBER
+===================================================== */
+
+.score-content span {
+
+    font-size: 42px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    color: #ffffff;
+
+    letter-spacing: -1px;
+
+}
+
+
+/* =====================================================
+   SCORE LABEL
+===================================================== */
+
+.score-content small {
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =====================================================
+   SCORE INFORMATION
+===================================================== */
+
+.score-info {
+
+    flex: 1;
+
+}
+
+
+.score-info h2 {
+
+    margin-bottom: 12px;
+
+}
+
+
+.score-info p {
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   SCORE STATUS
+===================================================== */
+
+.score-status {
+
+    display: inline-flex;
+
+    margin-top: 18px;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            139,
+            92,
+            246,
+            0.25
+        );
+
+    color: #c4b5fd;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   SCORE ANIMATION
+===================================================== */
+
+@keyframes scoreAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.75);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+.animated-score-circle {
+
+    animation:
+        scoreAppear
+        0.6s
+        ease-out
+        forwards;
+
+}
+
+
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .score-card {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 25px;
+
+    }
+
+
+    .animated-score-circle {
+
+        width: 170px;
+
+        height: 170px;
+
+        min-width: 170px;
+
+    }
+
+
+    .score-content span {
+
+        font-size: 36px;
+
+    }
+
+
+    .score-info {
+
+        width: 100%;
+
+    }
+
+
+    .score-status {
+
+        justify-content: center;
+
+    }
+
+}
+
+</style>
+
+
+{% endblock %}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}AI Career Copilot{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('style_css') }}">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-container">
+
+        <!-- LOGO -->
+        <a href="{{ url_for('home') }}" class="brand-logo">
+
+            <span class="brand-icon">✦</span>
+
+            <span>
+                AI Career
+                <strong>Copilot</strong>
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="main-nav">
+
+            {% if session.get('user_id') %}
+
+                <a href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+
+                <a href="{{ url_for('history') }}">
+                    History
+                </a>
+
+                <a href="{{ url_for('logout') }}" class="nav-login">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+                <a
+                    href="{{ url_for('signup') }}"
+                    class="nav-signup"
+                >
+                    Sign Up
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div>
+            <div class="footer-logo">
+                ✦ AI Career Copilot
+            </div>
+
+            <p>
+                Your AI-powered career companion for resumes,
+                skills and interview preparation.
+            </p>
+        </div>
+
+
+        <div class="footer-links">
+
+            {% if session.get('user_id') %}
+
+                <a href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+
+                <a href="{{ url_for('history') }}">
+                    History
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+                <a href="{{ url_for('signup') }}">
+                    Sign Up
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 AI Career Copilot.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+    const observer =
+        new IntersectionObserver(
+            function(entries) {
+
+                entries.forEach(function(entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    revealElements.forEach(function(element) {
+
+        observer.observe(element);
+
+    });
+
+});
+
+
+/* Smooth scroll */
+
+document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+
+    link.addEventListener("click", function(event) {
+
+        const target =
+            document.querySelector(this.getAttribute("href"));
+
+        if (target) {
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

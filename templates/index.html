@@ -1,0 +1,873 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Career Copilot | AI Resume Checker
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="landing-hero">
+
+    <div class="hero-glow glow-one"></div>
+    <div class="hero-glow glow-two"></div>
+
+    <div class="landing-hero-content reveal">
+
+        <span class="eyebrow">
+            AI CAREER COPILOT
+        </span>
+
+        <h1>
+            Is your resume
+            <span>good enough?</span>
+        </h1>
+
+        <p>
+            Analyze your resume, discover skill gaps,
+            improve your profile and prepare for your
+            next career opportunity with AI.
+        </p>
+
+
+        <div class="hero-actions">
+
+            <a
+                href="{{ url_for('login') }}"
+                class="hero-primary"
+            >
+                🚀 Check My Resume
+                <span>→</span>
+            </a>
+
+            <a
+                href="#how-it-works"
+                class="hero-secondary"
+            >
+                How it works
+                <span>↓</span>
+            </a>
+
+        </div>
+
+
+        <div class="hero-trust">
+
+            <span>✓ Resume Analysis</span>
+            <span>✓ Skill Gap Detection</span>
+            <span>✓ Career Roadmap</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESUME SCORE VISUAL -->
+
+    <div class="hero-visual reveal">
+
+        <div class="floating-card card-top">
+
+            <span>AI Resume Score</span>
+
+            <strong>92</strong>
+
+            <small>/100</small>
+
+        </div>
+
+
+        <div class="resume-paper">
+
+            <div class="resume-header-line"></div>
+
+            <div class="resume-title-line"></div>
+
+            <div class="resume-small-line"></div>
+
+            <div class="resume-small-line short"></div>
+
+
+            <div class="resume-section-title">
+                PROFESSIONAL SUMMARY
+            </div>
+
+            <div class="resume-line"></div>
+            <div class="resume-line"></div>
+            <div class="resume-line short"></div>
+
+
+            <div class="resume-section-title">
+                EXPERIENCE
+            </div>
+
+            <div class="resume-line"></div>
+            <div class="resume-line"></div>
+            <div class="resume-line"></div>
+
+
+            <div class="resume-section-title">
+                SKILLS
+            </div>
+
+            <div class="skill-pills">
+
+                <span>Python</span>
+                <span>SQL</span>
+                <span>ML</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="floating-card card-bottom">
+
+            <span>ATS Match</span>
+
+            <strong>94%</strong>
+
+            <div class="mini-progress">
+                <div></div>
+            </div>
+
+        </div>
+
+
+        <div class="floating-arrow arrow-one">
+            ↗
+        </div>
+
+        <div class="floating-arrow arrow-two">
+            ↙
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="landing-stats reveal">
+
+    <div>
+        <strong>27+</strong>
+        <span>Resume Checks</span>
+    </div>
+
+    <div>
+        <strong>AI</strong>
+        <span>Career Analysis</span>
+    </div>
+
+    <div>
+        <strong>100%</strong>
+        <span>Personalized</span>
+    </div>
+
+    <div>
+        <strong>24/7</strong>
+        <span>Career Support</span>
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 1
+===================================================== -->
+
+<section class="feature-section reveal">
+
+    <div class="feature-image">
+
+        <div class="score-dashboard">
+
+            <div class="score-ring">
+                <span>92</span>
+            </div>
+
+            <h4>Resume Score</h4>
+
+            <div class="score-check">
+                ✓ ATS Friendly
+            </div>
+
+            <div class="score-check">
+                ✓ Strong Skills
+            </div>
+
+            <div class="score-warning">
+                ! Improve Experience
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="feature-content">
+
+        <span class="section-label">
+            RESUME CHECKER
+        </span>
+
+        <h2>
+            Understand what
+            recruiters see.
+        </h2>
+
+        <p>
+            AI Career Copilot checks your resume structure,
+            skills, content and role alignment so you know
+            exactly where your profile needs improvement.
+        </p>
+
+
+        <div class="feature-points">
+
+            <div>
+                <span>✓</span>
+                ATS-friendly resume structure
+            </div>
+
+            <div>
+                <span>✓</span>
+                Skills and keyword analysis
+            </div>
+
+            <div>
+                <span>✓</span>
+                Content quality checks
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 2
+===================================================== -->
+
+<section class="dark-feature reveal">
+
+    <div class="dark-feature-content">
+
+        <span class="section-label light">
+            ATS ANALYSIS
+        </span>
+
+        <h2>
+            Know how your resume
+            performs.
+        </h2>
+
+        <p>
+            Understand important resume factors such as
+            formatting, sections, keywords and readability.
+        </p>
+
+    </div>
+
+
+    <div class="ats-animation">
+
+        <div class="ats-machine">
+
+            <div class="machine-screen">
+
+                <div class="scan-line"></div>
+
+                <span>
+                    ATS SCANNING
+                </span>
+
+                <strong>
+                    94%
+                </strong>
+
+            </div>
+
+            <div class="machine-light"></div>
+
+        </div>
+
+
+        <div class="scan-arrow">
+            →
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 3
+===================================================== -->
+
+<section class="checks-section reveal">
+
+    <div class="center-heading">
+
+        <span class="section-label">
+            27 RESUME CHECKS
+        </span>
+
+        <h2>
+            We look beyond spelling mistakes.
+        </h2>
+
+        <p>
+            Your resume is checked across multiple
+            important career categories.
+        </p>
+
+    </div>
+
+
+    <div class="check-grid">
+
+        <div class="check-card">
+
+            <div class="check-icon">📄</div>
+
+            <h3>ATS Essentials</h3>
+
+            <p>
+                File format, resume structure,
+                contact information and links.
+            </p>
+
+            <div class="check-arrow">→</div>
+
+        </div>
+
+
+        <div class="check-card">
+
+            <div class="check-icon">✍️</div>
+
+            <h3>Content</h3>
+
+            <p>
+                Grammar, bullet points,
+                repetition and impact.
+            </p>
+
+            <div class="check-arrow">→</div>
+
+        </div>
+
+
+        <div class="check-card">
+
+            <div class="check-icon">🎯</div>
+
+            <h3>Job Tailoring</h3>
+
+            <p>
+                Hard skills, soft skills,
+                action verbs and job title.
+            </p>
+
+            <div class="check-arrow">→</div>
+
+        </div>
+
+
+        <div class="check-card">
+
+            <div class="check-icon">🚩</div>
+
+            <h3>Recruiter Signals</h3>
+
+            <p>
+                Resume credibility and
+                interview risk signals.
+            </p>
+
+            <div class="check-arrow">→</div>
+
+        </div>
+
+
+        <div class="check-card">
+
+            <div class="check-icon">📑</div>
+
+            <h3>Resume Sections</h3>
+
+            <p>
+                Essential sections,
+                contact information and order.
+            </p>
+
+            <div class="check-arrow">→</div>
+
+        </div>
+
+
+        <div class="check-card">
+
+            <div class="check-icon">📈</div>
+
+            <h3>Career Impact</h3>
+
+            <p>
+                Career progression,
+                achievements and skills evidence.
+            </p>
+
+            <div class="check-arrow">→</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 4
+===================================================== -->
+
+<section class="feature-section reverse reveal">
+
+    <div class="feature-content">
+
+        <span class="section-label">
+            TARGET ROLE
+        </span>
+
+        <h2>
+            Tailor your resume
+            for your dream role.
+        </h2>
+
+        <p>
+            Select your target role and discover the skills
+            your resume already has and the skills you should
+            strengthen.
+        </p>
+
+
+        <div class="role-animation">
+
+            <div class="role-pill active">
+                Data Scientist
+            </div>
+
+            <div class="role-pill">
+                Data Analyst
+            </div>
+
+            <div class="role-pill">
+                Software Engineer
+            </div>
+
+            <div class="role-pill">
+                Web Developer
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="feature-image role-dashboard">
+
+        <div class="role-score">
+
+            <span>Role Match</span>
+
+            <strong>86%</strong>
+
+            <div class="progress-bar">
+                <div></div>
+            </div>
+
+        </div>
+
+
+        <div class="floating-keyword">
+            Python ✓
+        </div>
+
+        <div class="floating-keyword second">
+            SQL ✓
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 5
+===================================================== -->
+
+<section class="purple-section reveal">
+
+    <div class="center-heading">
+
+        <span class="section-label light">
+            SKILL GAP ANALYSIS
+        </span>
+
+        <h2>
+            Find what you're missing.
+        </h2>
+
+        <p>
+            Turn your resume analysis into a practical
+            learning plan.
+        </p>
+
+    </div>
+
+
+    <div class="skill-gap-container">
+
+        <div class="skill-column">
+
+            <h3>
+                ✓ Skills Found
+            </h3>
+
+            <span>Python</span>
+            <span>SQL</span>
+            <span>Machine Learning</span>
+            <span>Pandas</span>
+
+        </div>
+
+
+        <div class="gap-arrow">
+            →
+        </div>
+
+
+        <div class="skill-column missing">
+
+            <h3>
+                + Skills to Learn
+            </h3>
+
+            <span>TensorFlow</span>
+            <span>Power BI</span>
+            <span>Statistics</span>
+            <span>Docker</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 6
+===================================================== -->
+
+<section class="roadmap-section reveal" id="how-it-works">
+
+    <div class="center-heading">
+
+        <span class="section-label">
+            CAREER ROADMAP
+        </span>
+
+        <h2>
+            From resume to career roadmap.
+        </h2>
+
+        <p>
+            Follow a simple path to become job ready.
+        </p>
+
+    </div>
+
+
+    <div class="timeline">
+
+        <div class="timeline-step">
+
+            <span>01</span>
+
+            <h3>
+                Upload
+            </h3>
+
+            <p>
+                Upload your resume.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-arrow">
+            →
+        </div>
+
+
+        <div class="timeline-step">
+
+            <span>02</span>
+
+            <h3>
+                Analyze
+            </h3>
+
+            <p>
+                Find strengths and gaps.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-arrow">
+            →
+        </div>
+
+
+        <div class="timeline-step">
+
+            <span>03</span>
+
+            <h3>
+                Improve
+            </h3>
+
+            <p>
+                Fix your resume.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-arrow">
+            →
+        </div>
+
+
+        <div class="timeline-step">
+
+            <span>04</span>
+
+            <h3>
+                Prepare
+            </h3>
+
+            <p>
+                Practice interviews.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 7
+===================================================== -->
+
+<section class="feature-section reveal">
+
+    <div class="interview-visual">
+
+        <div class="chat-card">
+
+            <div class="chat-header">
+                AI Interview Coach
+            </div>
+
+            <div class="chat-question">
+                Tell me about yourself.
+            </div>
+
+            <div class="chat-answer">
+                Your answer will be evaluated
+                based on clarity and relevance.
+            </div>
+
+            <div class="chat-cursor">
+                ●
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="feature-content">
+
+        <span class="section-label">
+            INTERVIEW PREPARATION
+        </span>
+
+        <h2>
+            Prepare before the
+            interview begins.
+        </h2>
+
+        <p>
+            Get role-specific technical questions,
+            project questions and common interview
+            preparation topics.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 8
+===================================================== -->
+
+<section class="improve-section reveal">
+
+    <div class="improve-card">
+
+        <div class="magic-icon">
+            ✨
+        </div>
+
+        <span class="section-label">
+            RESUME IMPROVEMENT
+        </span>
+
+        <h2>
+            Fix & Improve your resume.
+        </h2>
+
+        <p>
+            Clean formatting, organize sections,
+            normalize bullet points and generate
+            an improved downloadable resume.
+        </p>
+
+
+        <a
+            href="{{ url_for('login') }}"
+            class="hero-primary"
+        >
+            ✨ Improve My Resume
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 9
+===================================================== -->
+
+<section class="why-section reveal">
+
+    <div class="center-heading">
+
+        <span class="section-label">
+            WHY AI CAREER COPILOT
+        </span>
+
+        <h2>
+            Everything you need in one place.
+        </h2>
+
+    </div>
+
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <span>🤖</span>
+            <h3>AI Analysis</h3>
+            <p>
+                Understand your resume with intelligent
+                career-focused analysis.
+            </p>
+        </div>
+
+
+        <div class="why-card">
+            <span>🎯</span>
+            <h3>Role Focused</h3>
+            <p>
+                Analyze your profile according to your
+                selected target role.
+            </p>
+        </div>
+
+
+        <div class="why-card">
+            <span>🗺️</span>
+            <h3>Career Roadmap</h3>
+            <p>
+                Turn skill gaps into practical next steps.
+            </p>
+        </div>
+
+
+        <div class="why-card">
+            <span>💼</span>
+            <h3>Interview Ready</h3>
+            <p>
+                Prepare for common role-specific
+                interview questions.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 10 / FINAL CTA
+===================================================== -->
+
+<section class="final-landing-cta reveal">
+
+    <div class="cta-glow"></div>
+
+    <span class="section-label light">
+        START YOUR CAREER JOURNEY
+    </span>
+
+    <h2>
+        Ready to build a
+        stronger resume?
+    </h2>
+
+    <p>
+        Upload your resume, discover your skill gaps
+        and take the next step in your career.
+    </p>
+
+
+    <a
+        href="{{ url_for('login') }}"
+        class="hero-primary white-button"
+    >
+        🚀 Get Started
+        <span>→</span>
+    </a>
+
+</section>
+
+{% endblock %}
