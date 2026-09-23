@@ -1,6 +1,18 @@
-# AI Career Copilot
+# 🤖 AI Career Copilot
 
-An AI-powered Resume Analyzer and Career Guidance application.
+AI Career Copilot is an AI-powered career assistance web application that analyzes resumes and provides personalized career guidance based on the user's target job role.
+
+## 🚀 Features
+
+- 📄 Resume Upload and Analysis
+- 🤖 AI-powered Resume Analysis
+- 🎯 Target Job Role Analysis
+- 🧠 Skill Gap Analysis
+- 🗺️ Personalized Career Roadmap
+- 💼 Project Recommendations
+- 🎤 Interview Question Suggestions
+- 👤 User Login and Registration
+- 📊 Career Analysis History
 
 ## 🛠️ Technologies Used
 
@@ -20,17 +32,28 @@ An AI-powered Resume Analyzer and Career Guidance application.
 - SQLAlchemy
 - MySQL
 
-### Libraries
+### Python Libraries
 - PyPDF2
 - python-docx
 
 ### Deployment
 - Gunicorn
-## Features
 
-- Resume Upload
-- AI Resume Analysis
-- Skill Gap Analysis
-- Career Roadmap
-- Interview Questions
-- Project Recommendations
+## 🏗️ Project Structure
+
+```text
+AI-Career-Copilot/
+│
+├── templates/
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   └── ...
+│
+├── app.py
+├── ai.py
+├── db.py
+├── models.py
+├── requirements.txt
+├── learn.txt
+└── .gitignore
