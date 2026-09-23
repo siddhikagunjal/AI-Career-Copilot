@@ -2,20 +2,30 @@
 
 An AI-powered Resume Analyzer and Career Guidance application.
 
-## Technologies Used
+## 🛠️ Technologies Used
 
-- Python
-- Flask
-- OpenAI API
+### Frontend
 - HTML
 - CSS
 - JavaScript
+
+### Backend
+- Python
+- Flask
+
+### AI
+- OpenAI API
+
+### Database
 - SQLAlchemy
 - MySQL
+
+### Libraries
 - PyPDF2
 - python-docx
-- Gunicorn
 
+### Deployment
+- Gunicorn
 ## Features
 
 - Resume Upload
