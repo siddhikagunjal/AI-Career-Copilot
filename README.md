@@ -36,8 +36,10 @@ AI Career Copilot is an AI-powered career assistance web application that analyz
 - PyPDF2
 - python-docx
 
-### Deployment
-- Gunicorn
+## 🔗 Project Links
+
+- 🌐 Live Demo: https://ai-career-copilot-empn.onrender.com
+- 💻 GitHub Repository: https://github.com/siddhikagunjal/AI-Career-Copilot
 
 ## 🏗️ Project Structure
 
